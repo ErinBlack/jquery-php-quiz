@@ -40,10 +40,16 @@ const quizBuilder = {
     serializeResults : function(event){
         event.preventDefault();
         const quizResults = $("#js-quiz__form").serializeArray();
-        quizBuilder.calculateResults(quizResults);
+        if(quizResults.length < quizAnswerKey.length){
+            $('.js-quiz__error').empty();
+            $('.js-quiz__error').append('Please answer all the questions');
+        }
+        if(quizResults.length == quizAnswerKey.length){
+            $('.js-quiz__error').empty();
+            quizBuilder.calculateResults(quizResults);
+        }
     },
     calculateResults : function(quizResults){
-        console.log('quizResults', quizResults);
         let correctAnswerCount = 0;
         let itemsProcessed = 0;
         quizResults.forEach(function(length, i){
@@ -66,7 +72,6 @@ const quizBuilder = {
         // });
     },
     printResultsFreeLance : function(correctCount){
-        console.log('in printResults with ', correctCount);
         let quizResultText = '';
         if(correctCount == 7 || correctCount == 8 || correctCount == 9  || correctCount == 10) {
             quizResultText = `Gig work is a great choice for you! Your flexibility
@@ -82,6 +87,7 @@ const quizBuilder = {
             Your desire for consistency in your work may make you better suited
             for a traditional job.`;
         }
+        $('.js-quiz__result').empty();
         $('.js-quiz__result').append(quizResultText);
     }
 }; // end quizBuilder
