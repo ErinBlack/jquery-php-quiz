@@ -56,7 +56,7 @@ const quizBuilder = {
             } // end if statement
             // checking to see if processed all items
             if(itemsProcessed == quizResults.length){
-                quizBuilder.printResults(correctAnswerCount);
+                quizBuilder.printResultsFreeLance(correctAnswerCount);
             }
         }); // end quizResults.forEach
 
@@ -65,7 +65,23 @@ const quizBuilder = {
         //     $('#result').fadeIn('slow').html(data);
         // });
     },
-    printResults : function(correctCount){
+    printResultsFreeLance : function(correctCount){
         console.log('in printResults with ', correctCount);
+        let quizResultText = '';
+        if(correctCount == 7 || correctCount == 8 || correctCount == 9  || correctCount == 10) {
+            quizResultText = `Gig work is a great choice for you! Your flexibility
+            and desire for autonomy make you a great candidate.`;
+        }
+        if(correctCount == 4 || correctCount == 5 || correctCount == 6 ) {
+            quizResultText = `Gig work could be a good choice for you. Be
+            thoughtful about how flexible you can be in your work before deciding
+            whether to proceed.`;
+        }
+        if(correctCount == 1 || correctCount == 2  || correctCount == 3) {
+            quizResultText = `Gig work may not be the best choice for you.
+            Your desire for consistency in your work may make you better suited
+            for a traditional job.`;
+        }
+        $('.js-quiz__result').append(quizResultText);
     }
 }; // end quizBuilder
