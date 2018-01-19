@@ -40,23 +40,32 @@ const quizBuilder = {
     serializeResults : function(event){
         event.preventDefault();
         const quizResults = $("#js-quiz__form").serializeArray();
-        quizBuilder.parseResults(quizResults);
+        quizBuilder.calculateResults(quizResults);
     },
-    parseResults : function(quizResults){
+    calculateResults : function(quizResults){
         console.log('quizResults', quizResults);
         let correctAnswerCount = 0;
+        let itemsProcessed = 0;
         quizResults.forEach(function(length, i){
             const currentResult = quizResults[i].value;
             const currentAnswer = quizAnswerKey[i].correctAnswer;
+            itemsProcessed ++;
+
             if(currentResult == currentAnswer){
                 correctAnswerCount ++;
-                console.log('correctAnswerCount', correctAnswerCount);
+            } // end if statement
+            // checking to see if processed all items
+            if(itemsProcessed == quizResults.length){
+                quizBuilder.printResults(correctAnswerCount);
             }
-        });
+        }); // end quizResults.forEach
 
         // const dataToSend = [quizResults,quizAnswerKey];
         // $.post('quiz.php', {dataToSend: dataToSend}, function(data){
         //     $('#result').fadeIn('slow').html(data);
         // });
+    },
+    printResults : function(correctCount){
+        console.log('in printResults with ', correctCount);
     }
 }; // end quizBuilder
