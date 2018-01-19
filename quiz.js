@@ -56,7 +56,6 @@ const quizBuilder = {
             const currentResult = quizResults[i].value;
             const currentAnswer = quizAnswerKey[i].correctAnswer;
             itemsProcessed ++;
-
             if(currentResult == currentAnswer){
                 correctAnswerCount ++;
             } // end if statement
@@ -65,11 +64,6 @@ const quizBuilder = {
                 quizBuilder.printResultsFreeLance(correctAnswerCount);
             }
         }); // end quizResults.forEach
-
-        // const dataToSend = [quizResults,quizAnswerKey];
-        // $.post('quiz.php', {dataToSend: dataToSend}, function(data){
-        //     $('#result').fadeIn('slow').html(data);
-        // });
     },
     printResultsFreeLance : function(correctCount){
         let quizResultText = '';

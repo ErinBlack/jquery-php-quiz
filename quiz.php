@@ -1,10 +1,12 @@
 <?php
     $sentData = $_POST['dataToSend'];
+    if(isset($_POST['dataToSend'])){
+        
+    }
     if($sentData){
         $quizResults = $sentData[0];
         $quizAnswerKey = $sentData[1];
         $quizLength = count($quizResults);
-        echo $quizResults[0];
         for( $i = 0; $i <= $quizLength; $i++){
             echo 'in for loop';
             $currentResult = $quizResults[i];
