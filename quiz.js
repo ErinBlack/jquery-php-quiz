@@ -43,11 +43,20 @@ const quizBuilder = {
         quizBuilder.parseResults(quizResults);
     },
     parseResults : function(quizResults){
-        console.log('in parseResults with', quizResults);
-        console.log('in parseResults with', quizAnswerKey);
-        const dataToSend = [quizResults,quizAnswerKey];
-        $.post('quiz.php', {dataToSend: dataToSend}, function(data){
-            $('#result').fadeIn('slow').html(data);
+        console.log('quizResults', quizResults);
+        let correctAnswerCount = 0;
+        quizResults.forEach(function(length, i){
+            const currentResult = quizResults[i].value;
+            const currentAnswer = quizAnswerKey[i].correctAnswer;
+            if(currentResult == currentAnswer){
+                correctAnswerCount ++;
+                console.log('correctAnswerCount', correctAnswerCount);
+            }
         });
+
+        // const dataToSend = [quizResults,quizAnswerKey];
+        // $.post('quiz.php', {dataToSend: dataToSend}, function(data){
+        //     $('#result').fadeIn('slow').html(data);
+        // });
     }
 }; // end quizBuilder
