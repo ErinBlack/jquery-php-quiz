@@ -45,5 +45,9 @@ const quizBuilder = {
     parseResults : function(quizResults){
         console.log('in parseResults with', quizResults);
         console.log('in parseResults with', quizAnswerKey);
+        const dataToSend = [quizResults,quizAnswerKey];
+        $.post('quiz.php', {dataToSend: dataToSend}, function(data){
+            $('#result').fadeIn('slow').html(data);
+        });
     }
 }; // end quizBuilder
